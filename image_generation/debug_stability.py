@@ -8,10 +8,9 @@ url = "https://api.stability.ai/v2beta/stable-image/generate/core"
 
 headers = {
     "Authorization": f"Bearer {key}",
-    "Accept": "image/*",           # важно
+    "Accept": "image/*",       
 }
 
-# все поля отправляем в files как (None, value) => multipart/form-data
 fields = {
     "prompt": "anime watercolor, neon street at night, visual novel background, no text, no captions",
     "width": "768",

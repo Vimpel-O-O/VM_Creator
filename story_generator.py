@@ -101,11 +101,8 @@ def generate_story_with_gemini(story_data, api_key=None):
     Send story data to Gemini API and generate a complete story.
     Returns: (generated_story, error_message)
     """
-    try:
-        from google import genai
-    except ImportError:
-        return None, "Google Generative AI library not installed. Run: pip install google-generativeai"
     
+    import google.generativeai as genai 
     # Get API key from parameter, environment variable, or use default
     api_key = GEMINI_API_KEY
     
@@ -114,12 +111,10 @@ def generate_story_with_gemini(story_data, api_key=None):
     
     try:
         # Initialize client with API key
-        client = genai.Client(api_key=api_key)
-        
-        # Try different models
-        model = 'gemini-2.5-flash'
-        model_name = None
-        response = None
+        #client = genai.Client(api_key=api_key)
+
+        genai.configure(api_key=api_key)
+        model = genai.GenerativeModel("gemini-2.5-flash")
         
         # Format prompt
         prompt = format_json_for_gemini(story_data)
@@ -127,10 +122,7 @@ def generate_story_with_gemini(story_data, api_key=None):
         print(f"\n🤖 Generating story with Gemini ({model})...")
         print("This may take a moment...\n")
         
-        response = client.models.generate_content(
-            model=model,
-            contents=prompt,
-        )    
+        response = model.generate_content(prompt)    
         
         if not response:
             return None, "Could not generate content with any Gemini model. Please check your API key."

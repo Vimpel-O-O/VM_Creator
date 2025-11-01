@@ -1,0 +1,3 @@
+from ImageGeneration import generate_image
+
+generate_image('"characters": [ {"name":"Alex", "look_key":"male, messy brown hair, five-oclock shadow, tattered orange spacesuit", "pose":"actively working on an antenna, focused"}, {"name":"Jony", "look_key":"small, cube-shaped drone, single glowing blue eye, metallic, slightly dented chassis", "pose":"observing closely, emitting small beeps"} ], "camera": "long shot", "mood": "intense focus, determined"', "Images/0001.png")

@@ -1,0 +1,44 @@
+Pypiline Service (P2)
+
+Description
+
+This is the backend Python service that manages the AI image generation queue. It's built with FastAPI.
+
+How to Run
+
+    Make sure all requirements are installed (e.g., pip install fastapi uvicorn).
+
+    Make sure the cdn/ directory exists in the project root.
+
+    From the project root, run the server using uvicorn:
+    Bash
+
+    uvicorn server.app:app --reload --port 5000
+
+API Endpoints
+
+1. Enqueue Job
+
+    Method: POST
+
+    URL: http://127.0.0.1:5000/enqueue_scenes
+
+    Body: The full story.json payload.
+
+2. Check Status
+
+    Method: GET
+
+    URL: http://127.0.0.1:5000/status
+
+    Response:
+    JSON
+
+{
+  "scenes": [
+    {"id":"s001","status":"ready","url":"..."},
+    {"id":"s002","status":"rendering","url":null},
+    {"id":"s003","status":"queued","url":null},
+    {"id":"s004","status":"failed","url":null}
+  ]
+}

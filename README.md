@@ -2,7 +2,7 @@
 
 An AI-powered tool that automatically generates complete visual novels using Google Gemini and Stability AI. Simply provide your story ideas through an interactive interface, and the system generates the dialogue, script, and images to create a playable Ren'Py visual novel.
 
-Link to CodeDay 2025 showcase - 
+Link to CodeDay 2025 showcase - [link](https://showcase.codeday.org/project/cmhgqspw91903j5my04z26yk6)
 
 ## Features
 

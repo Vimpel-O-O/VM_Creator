@@ -145,3 +145,10 @@ This project is provided as-is for educational and personal use.
 - [Google Gemini](https://deepmind.google/technologies/gemini/) for story generation
 - [Stability AI](https://stability.ai/) for image generation
 - [Ren'Py](https://www.renpy.org/) for the visual novel engine
+
+<img width="3024" height="1896" alt="1" src="https://github.com/user-attachments/assets/ef384b3a-78da-4f6d-9f21-e65e130fbe04" />
+
+<img width="3024" height="1896" alt="2" src="https://github.com/user-attachments/assets/d61b3f93-755f-4245-aad3-12427b2c37ea" />
+
+<img width="3024" height="1896" alt="3" src="https://github.com/user-attachments/assets/ad00f83a-64c9-49ed-b8a0-a71f5b59a772" />
+

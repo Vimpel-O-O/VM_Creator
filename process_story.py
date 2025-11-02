@@ -18,11 +18,6 @@ except ImportError:
     print("Please install it by running: pip install python-dotenv")
     sys.exit(1)
 
-# --- Configuration ---
-STORY_FILE = 'generated_story.txt'
-OUTPUT_DIR = 'Generated_Images'
-
-
 # ---------------------
 
 def create_prompt_for_scene(scene: dict, style: str) -> str:
@@ -59,18 +54,17 @@ def create_prompt_for_scene(scene: dict, style: str) -> str:
     return ", ".join(prompt_parts)
 
 
-def main():
-    print(f"Starting scene processing from '{STORY_FILE}'...")
+def generate_all_images(story_data, output):
 
     # Load the story JSON
     try:
-        with open(STORY_FILE, 'r') as f:
+        with open(story_data, 'r') as f:
             story_data = json.load(f)
     except FileNotFoundError:
-        print(f"Error: Story file not found at '{STORY_FILE}'")
+        print(f"Error: Story file not found at '{story_data}'")
         return
     except json.JSONDecodeError:
-        print(f"Error: Could not parse JSON from '{STORY_FILE}'. Check for syntax errors.")
+        print(f"Error: Could not parse JSON from '{story_data}'. Check for syntax errors.")
         return
 
     # Get the global style and all scenes
@@ -82,33 +76,26 @@ def main():
         return
 
     # Create the output directory if it doesn't exist
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    print(f"Saving generated images to '{OUTPUT_DIR}' directory.")
+    os.makedirs(output, exist_ok=True)
 
     # Loop through each scene and generate an image
+    print("Generating image (this may take a moment)...")
+
     for scene in scenes:
         scene_id = scene.get('id', 'unknown_scene')
-        print(f"\n--- Processing Scene: {scene_id} ---")
 
         # 1. Create the detailed prompt
         prompt = create_prompt_for_scene(scene, style)
-        print(f"Prompt: {prompt}")
 
         # 2. Define the output path
-        output_path = os.path.join(OUTPUT_DIR, f"{scene_id}.png")
+        output_path = os.path.join(output, f"{scene_id}.png")
 
         # 3. Call your generate_image function
         try:
-            print("Generating image (this may take a moment)...")
             generate_image(prompt, output_path)
-            print(f"Successfully saved image to '{output_path}'")
         except Exception as e:
             print(f"Error while generating image for {scene_id}: {e}")
             # Continue to the next scene even if one fails
             continue
 
-    print("\n--- Automation complete! ---")
-
-
-if __name__ == "__main__":
-    main()
+    print("\n--- Image generation complete! ---")

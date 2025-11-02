@@ -91,8 +91,21 @@ def format_json_for_gemini(story_data):
     prompt += "* **`look_key`**: Use brief, descriptive tags (e.g., 'short silver hair, yellow raincoat, blue scarf') that remain consistent for each character throughout the story.\n"
     prompt += "* **`bg`**: Provide clear, specific `location` and `time` (e.g., 'neon street', 'rain night').\n"
     prompt += "* **`camera`**: Use standard shots (e.g., 'close up', 'medium shot', 'long shot', 'full body').\n"
-    prompt += "* **`dialogue`**: Ensure the story has compelling character development and plot progression, with dialogue broken down into sequential lines in the array.\n"
+    prompt += "* **`dialogue`**: Ensure the story has compelling character development and plot progression, with dialogue broken down into sequential lines in the array with having each character name before each row.\n"
     prompt += "* **Scene Flow**: Ensure the scenes transition logically and tell a complete, engaging story."
+    prompt += (
+    "\n\n### OUTPUT REQUIREMENTS ###\n"
+    "* Output ONLY the JSON object itself.\n"
+    "* DO NOT wrap it in code blocks, backticks, or Markdown fences.\n"
+    "* Begin directly with '{' and end with '}'."
+    )
+    prompt += (
+        "\n### SIMPLICITY & ACCESSIBILITY RULES ###\n"
+        "* Keep the story easy to understand for all ages (teen to adult).\n"
+        "* Avoid overly complex vocabulary, philosophical themes, or abstract narration.\n"
+        "* Keep sentences short, natural, and emotionally clear.\n"
+        "* Focus on clarity, emotion, and readable pacing rather than heavy descriptions.\n"
+    )
     
     return prompt
 
@@ -119,7 +132,7 @@ def generate_story_with_gemini(story_data, api_key=None):
         # Format prompt
         prompt = format_json_for_gemini(story_data)
 
-        print(f"\n🤖 Generating story with Gemini ({model})...")
+        print(f"\n🤖 Generating story with Gemini...")
         print("This may take a moment...\n")
         
         response = model.generate_content(prompt)    
